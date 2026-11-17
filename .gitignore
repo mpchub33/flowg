@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+cajas.json
+yolov8*.pt
+video_vertical.mp4
