@@ -211,7 +211,8 @@ if __name__ == '__main__':
     ap.add_argument('--max-zoom', type=float, default=4.0)
     ap.add_argument('--out-h', type=int, choices=[0, 1080, 1920], default=0,
                     help='0 = automático sin ampliar la resolución nativa; 1080 o 1920 = altura de salida fija')
-    ap.add_argument('--model', default='yolov8m.pt')
+    ap.add_argument('--model', default='yolov8n.pt',
+                    help='Pesos YOLO; yolov8n.pt es el valor ligero recomendado para hosting compartido')
     ap.add_argument('--save-boxes', default='cajas.json')
     a = ap.parse_args()
     W, H, FPS = probe(a.inp)

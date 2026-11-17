@@ -29,7 +29,7 @@ La app abrirá `http://127.0.0.1:8501` si el sistema puede abrir el navegador au
 
 Los iniciadores ejecutan `comprobar_gpu.py`. Si muestra una GPU CUDA, YOLO la puede usar automáticamente. Si indica CPU, la app seguirá funcionando, pero el análisis de videos largos puede tardar mucho. La aceleración CUDA requiere una GPU NVIDIA y una instalación de PyTorch compatible con los controladores; no todas las GPU aceleran este modelo.
 
-El video se procesa en tu computadora y el servidor escucha solo en `127.0.0.1` cuando se inicia con los archivos incluidos, así que no se publica en Internet. No cierres la ventana del servidor durante el procesamiento. La primera ejecución también puede descargar el modelo YOLO.
+El video se procesa en tu computadora y el servidor escucha solo en `127.0.0.1` cuando se inicia con los archivos incluidos, así que no se publica en Internet. No cierres la ventana del servidor durante el procesamiento. La primera ejecución también puede descargar el modelo YOLO. El valor predeterminado es `yolov8n.pt`, que reduce el consumo de memoria en servicios cloud; puedes usar otro archivo definiendo `FOLLOW_SUBJECT_MODEL`.
 
 ## Requisitos / solución de problemas
 

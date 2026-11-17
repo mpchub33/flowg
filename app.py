@@ -152,10 +152,11 @@ def process(job_id):
         fps = 25.0
     expected_frames = max(1, math.ceil((end - start) * fps))
     output = folder / "video_vertical.mp4"
+    model = os.environ.get("FOLLOW_SUBJECT_MODEL", "yolov8n.pt")
     command = [sys.executable, str(BASE / "follow_subject.py"), str(sources[0]), str(output),
                "--click", f"{x},{y}", "--t0", str(start), "--t1", str(end),
                "--fill", str(fill), "--sigma", str(sigma), "--max-zoom", str(zoom),
-               "--out-h", str(out_h)]
+               "--out-h", str(out_h), "--model", model]
     write_status(folder, {"state": "queued", "progress": 0, "message": "En cola…",
                           "expected_frames": expected_frames})
     threading.Thread(target=run_processing, args=(folder, command, expected_frames), daemon=True).start()
