@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Follow Subject — recorte inteligente</title>
+<style>
+:root{--ink:#142326;--muted:#647478;--line:#dce5e2;--paper:#f4f7f5;--card:#fff;--green:#087e70;--green2:#d8f1e9;--orange:#f6a642;--shadow:0 14px 40px #203b3512}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}.shell{max-width:1100px;margin:auto;padding:34px 24px 70px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.brand{display:flex;gap:12px;align-items:center;font-weight:750;font-size:18px}.logo{width:38px;height:38px;border-radius:12px;background:var(--green);color:white;display:grid;place-items:center;font-size:21px}.eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-weight:750}.intro h1{font-size:clamp(28px,4vw,42px);letter-spacing:-.04em;line-height:1.1;margin:6px 0 10px}.intro p{color:var(--muted);margin:0 0 25px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:16px 0;box-shadow:var(--shadow)}.step{display:flex;gap:13px;align-items:flex-start;margin-bottom:16px}.num{width:29px;height:29px;display:grid;place-items:center;border-radius:10px;background:#e7f3ef;color:var(--green);font-weight:800;flex:none}.step h2{font-size:18px;margin:1px 0 3px;letter-spacing:-.02em}.step p{margin:0;color:var(--muted);font-size:14px}.upload{border:1.5px dashed #a9bfba;border-radius:13px;background:#fafcfb;padding:18px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.upload input{max-width:100%}.file-meta,.hint{color:var(--muted);font-size:13px}.hidden{display:none!important}.player-wrap{background:#101719;border-radius:14px;overflow:hidden;position:relative;line-height:0}.player-wrap video{width:100%;height:auto;max-height:62vh;display:block;background:#101719}.draw-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.player-controls{display:flex;gap:10px;align-items:center;margin-top:13px;flex-wrap:wrap}.btn{appearance:none;border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:white;color:var(--ink);font:inherit;font-weight:700;cursor:pointer;transition:.15s}.btn:hover{border-color:#8eb8ae;transform:translateY(-1px)}.btn.primary{background:var(--green);border-color:var(--green);color:white}.btn.primary:hover{background:#056c60}.btn.play{min-width:106px}.btn.active{background:#fff0dc;border-color:#f0bf7d;color:#7a4a0d}.toolbar-spacer{flex:1}.time-readout{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}.timeline{height:42px;position:relative;margin:17px 12px 5px;touch-action:none;cursor:pointer}.rail{position:absolute;left:0;right:0;top:17px;height:8px;border-radius:20px;background:#e5ebe9}.selected{position:absolute;top:17px;height:8px;background:#65b7a5;border-radius:20px}.playhead{position:absolute;top:10px;width:3px;height:22px;background:#243435;border-radius:4px;transform:translateX(-50%);z-index:2;pointer-events:none}.thumb{position:absolute;top:9px;width:22px;height:24px;background:white;border:2px solid var(--green);border-radius:8px;transform:translateX(-50%);z-index:3;cursor:ew-resize;box-shadow:0 2px 6px #1423262a;touch-action:none}.thumb:after{content:"";position:absolute;left:7px;top:6px;width:4px;height:8px;border-left:1px solid #9db7b1;border-right:1px solid #9db7b1}.times{display:flex;justify-content:space-between;color:#81908e;font-size:12px;padding:0 1px}.range-labels{display:flex;justify-content:space-between;gap:12px;margin:5px 0 13px;color:#465857;font-size:13px;font-variant-numeric:tabular-nums}.range-labels strong{color:var(--green)}.actions{display:flex;gap:9px;flex-wrap:wrap}.note{padding:12px 14px;border-radius:11px;background:#f1f6f4;color:#526461;font-size:13px;margin-top:12px}.mark-status{font-size:13px;margin-left:4px;color:var(--muted)}.mark-status.good{color:#087e70;font-weight:700}.settings{display:flex;align-items:end;gap:14px;flex-wrap:wrap}.field{display:flex;flex-direction:column;gap:5px;font-size:13px;color:#526461}.field select{min-width:140px;padding:9px;border:1px solid var(--line);border-radius:9px;background:white;color:var(--ink);font:inherit}.process-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:19px}.status{color:var(--muted);font-size:13px}.error{color:#a03527;background:#fff1ed;border-radius:10px;padding:12px;margin-top:12px;white-space:pre-wrap;overflow-wrap:anywhere}.result{margin-top:20px}.result video{width:100%;border-radius:12px;background:#111}.download{display:inline-block;margin-top:12px;color:var(--green);font-weight:750}.subtle{color:var(--muted);font-size:12px;margin-top:15px}@media(max-width:650px){.shell{padding:20px 14px 45px}.card{padding:16px}.head{margin-bottom:23px}.player-wrap video{max-height:48vh}.toolbar-spacer{display:none}.btn{padding:9px 11px}.settings{gap:10px}}
+</style>
+<style>
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.compare-card{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fbfcfc;min-width:0}.compare-card h3{margin:0 0 9px;font-size:14px}.compare-card video{width:100%;height:390px;object-fit:contain;border-radius:9px;background:#101719;display:block}.compare-controls{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}.compare-controls input{flex:1;min-width:140px;accent-color:var(--green)}.compare-clock{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}.compare-help{font-size:13px;color:var(--muted);margin:4px 0 0}.@media(max-width:700px){.comparison{grid-template-columns:1fr}.compare-card video{height:300px}}
+</style>
+<style>
+#process-progress{width:min(100%,280px);height:10px;accent-color:var(--green);border-radius:10px}
+</style>
+<style>
+.timeline{height:58px}
+.timeline .rail,.timeline .selected{top:30px}
+.timeline .playhead{top:23px;height:22px}
+.timeline .thumb{top:22px}
+.time-ruler{position:absolute;inset:0;pointer-events:none}
+.time-mark{position:absolute;top:0;height:30px;width:1px}
+.time-label{position:absolute;top:0;left:0;transform:translateX(-50%);white-space:nowrap;color:#71817e;font-size:11px;line-height:14px;font-variant-numeric:tabular-nums}
+.time-mark.first .time-label{transform:none}
+.time-mark.last .time-label{transform:translateX(-100%)}
+.time-tick{position:absolute;top:16px;left:0;height:14px;border-left:1px solid #bdcbc7}
+@media(max-width:650px){.time-label{font-size:10px}}
+</style>
+<link rel="stylesheet" href="/static/timeline-precision.css?v=2">
+<script defer src="/static/timeline-precision.js?v=2"></script>
+</head>
+<body>
+<div class="shell">
+  <header class="head"><div class="brand"><div class="logo">↗</div>Follow Subject</div><span class="eyebrow">Editor vertical 9:16</span></header>
+  <section class="intro"><div class="eyebrow">Recorte de video</div><h1>Elige el tramo.<br>Marca a quién seguir.</h1><p>Todo se hace sobre el video: reproduce, ajusta la línea de tiempo y dibuja el recuadro encima de la persona.</p></section>
+
+  <section class="card" id="upload-card">
+    <div class="step"><span class="num">1</span><div><h2>Abre tu video</h2><p>Elige un archivo para verlo aquí y recortar solo la parte que necesitas.</p></div></div>
+    <div class="upload"><input id="file" type="file" accept="video/*"><span class="file-meta" id="file-meta">MP4, MOV, MKV o WebM</span></div>
+    <div class="error hidden" id="upload-error"></div>
+  </section>
+
+  <section class="card hidden" id="editor">
+    <div class="step"><span class="num">2</span><div><h2>Selecciona el inicio y el final</h2><p>Usa las marcas de tiempo y arrastra los tiradores verdes. Pulsa reproducir para revisar tu selección.</p></div></div>
+    <div class="player-wrap" id="player-wrap"><video id="video" playsinline preload="metadata"></video><canvas class="draw-layer" id="overlay"></canvas></div>
+    <div class="player-controls">
+      <button class="btn play" id="play">▶ Reproducir</button>
+      <button class="btn" id="back" title="Retroceder un segundo">−1 s</button>
+      <button class="btn" id="forward" title="Avanzar un segundo">+1 s</button>
+      <span class="time-readout" id="clock">00:00.0 / 00:00.0</span>
+      <span class="toolbar-spacer"></span>
+      <span class="hint" id="filename"></span>
+    </div>
+    <div class="timeline" id="timeline" aria-label="Línea de tiempo: arrastra los tiradores para escoger el tramo">
+      <div class="time-ruler" id="time-ruler" aria-hidden="true"></div>
+      <div class="rail"></div><div class="selected" id="selected"></div><div class="playhead" id="playhead"></div>
+      <div class="thumb" id="start-thumb" title="Arrastra para cambiar el inicio"></div>
+      <div class="thumb" id="end-thumb" title="Arrastra para cambiar el final"></div>
+    </div>
+    <div class="timeline-scale-row" aria-label="Escala y precisión de la línea de tiempo">
+      <div class="scale-tools"><span class="scale-caption">Escala</span><button class="scale-btn" id="time-zoom-out" type="button" aria-label="Alejar la línea de tiempo">−</button><input id="time-scale" type="range" min="0" max="7" step="1" value="0" aria-label="Escala temporal"><button class="scale-btn" id="time-zoom-in" type="button" aria-label="Acercar la línea de tiempo">+</button><strong id="time-scale-readout">1×</strong><button class="scale-fit" id="time-fit" type="button">Ver todo</button></div>
+      <div class="frame-tools"><button class="frame-btn" id="frame-back" type="button" title="Retroceder un fotograma">− 1 fotograma</button><button class="frame-btn" id="frame-forward" type="button" title="Avanzar un fotograma">+ 1 fotograma</button></div>
+      <span class="scale-hint">Arrastra el cursor; con Shift + arrastre, desplaza la regla.</span>
+    </div>
+    <div class="range-labels"><span>Inicio <strong id="start-label">00:00.0</strong></span><span>Fin <strong id="end-label">00:00.0</strong></span></div>
+
+    <div class="step" style="margin-top:24px"><span class="num">3</span><div><h2>Marca la persona directamente en el video</h2><p>Reproduce y pausa cuando se vea bien. Pulsa «Dibujar recuadro» y arrastra sobre la persona.</p></div></div>
+    <div class="actions"><button class="btn" id="mark-start">Usar fotograma actual como inicio</button><button class="btn" id="mark-end">Usar fotograma actual como final</button><button class="btn" id="draw">Dibujar recuadro sobre la persona</button><button class="btn hidden" id="clear-box">Borrar recuadro</button><span class="mark-status" id="box-status">Aún no has marcado a la persona</span></div>
+    <div class="note" id="draw-note">Consejo: usa reproducir/pausa para encontrar un fotograma claro. El recuadro se dibuja encima de la imagen; incluye a una sola persona.</div>
+
+    <div class="step" style="margin-top:26px"><span class="num">4</span><div><h2>Procesa y descarga</h2><p>Alta calidad visual; mantiene todos los fotogramas y los FPS originales. Por defecto no amplía la resolución de origen.</p></div></div>
+    <div class="settings">
+      <label class="field">Resolución<select id="out-h"><option value="0" selected>Automática — sin ampliar</option><option value="1080">1080 px alto</option><option value="1920">1920 px alto — puede ampliar</option></select></label>
+      <label class="field">Tamaño del sujeto<select id="fill"><option value="0.90">Grande</option><option value="0.75">Mediano</option><option value="0.60">Más espacio</option></select></label>
+      <label class="field">Estabilización<select id="sigma"><option value="0.7">Normal</option><option value="1.2">Suave</option><option value="1.8">Muy suave</option></select></label>
+    </div>
+    <div class="process-row"><button class="btn primary" id="process">Procesar tramo seleccionado</button><span class="status" id="process-status"></span><progress id="process-progress" class="hidden" max="100" value="0"></progress></div>
+    <div class="error hidden" id="process-error"></div>
+    <div class="result hidden" id="result"></div>
+    <div class="subtle">El video se procesa en este entorno. Evita cargar archivos sensibles.</div>
+  </section>
+</div>
+<script>
+const $=id=>document.getElementById(id), file=$('file'), video=$('video'), timeline=$('timeline'), overlay=$('overlay');
+let job=null,duration=0,start=0,end=0,drag=null,drawing=false,box=null,down=null;
+async function parseApiResponse(res){const raw=await res.text();let data;try{data=JSON.parse(raw)}catch(e){if(res.status===413)throw new Error('El video supera el límite de carga del servidor. Prueba con un archivo más pequeño.');if(res.status>=500)throw new Error(`El servidor encontró un error (HTTP ${res.status}). Espera un momento y vuelve a intentarlo.`);throw new Error(`El servidor devolvió una página HTML en vez de datos (HTTP ${res.status}). Puede que la sesión haya caducado; recarga la app e inténtalo otra vez.`)}return data}
+function fmt(t){t=Math.max(0,t||0);let m=Math.floor(t/60),s=t%60;return `${String(m).padStart(2,'0')}:${s.toFixed(1).padStart(4,'0')}`}
+function pct(t){return duration?Math.min(100,Math.max(0,t/duration*100)):0}
+let rulerDuration=-1;
+function rulerFmt(t,step){const whole=Math.floor(t),hours=Math.floor(whole/3600),minutes=Math.floor(whole%3600/60),seconds=whole%60;if(step<1){const decimals=step<.1?2:1;return `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}.${Math.round((t-whole)*10**decimals).toString().padStart(decimals,'0')}`}return hours?`${hours}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`:`${minutes}:${String(seconds).padStart(2,'0')}`}
+function drawTimeRuler(){if(!duration||rulerDuration===duration)return;const ruler=$('time-ruler');ruler.replaceChildren();const steps=[.1,.2,.5,1,2,5,10,15,30,60,120,180,240,300,600,900,1800,3600],target=duration/6,step=steps.find(v=>v>=target)||Math.ceil(target/3600)*3600,marks=[0];for(let t=step;t<duration;t+=step)marks.push(t);if(duration-marks[marks.length-1]<step*.45&&marks.length>1)marks[marks.length-1]=duration;else if(duration-marks[marks.length-1]>.05)marks.push(duration);marks.forEach((t,i)=>{const mark=document.createElement('div');mark.className='time-mark'+(i===0?' first':'')+(i===marks.length-1?' last':'');mark.style.left=pct(t)+'%';const label=document.createElement('span');label.className='time-label';label.textContent=rulerFmt(t,step);const tick=document.createElement('span');tick.className='time-tick';mark.append(label,tick);ruler.append(mark)});rulerDuration=duration}
+video.addEventListener('loadedmetadata',drawTimeRuler);
+function drawTimeline(){if(!duration)return;$('start-thumb').style.left=pct(start)+'%';$('end-thumb').style.left=pct(end)+'%';$('selected').style.left=pct(start)+'%';$('selected').style.width=(pct(end)-pct(start))+'%';$('playhead').style.left=pct(video.currentTime)+'%';$('start-label').textContent=fmt(start);$('end-label').textContent=fmt(end);$('clock').textContent=`${fmt(video.currentTime)} / ${fmt(duration)}`}
+function setPlayhead(t){video.currentTime=Math.max(0,Math.min(duration,t));drawTimeline()}
+function fitCanvas(){if(!video.videoWidth)return;const r=video.getBoundingClientRect(),dpr=window.devicePixelRatio||1;overlay.width=Math.round(r.width*dpr);overlay.height=Math.round(r.height*dpr);overlay.style.width=r.width+'px';overlay.style.height=r.height+'px';const c=overlay.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);if(box)paintBox()}
+function paintBox(temp=null){const c=overlay.getContext('2d'),r=video.getBoundingClientRect(),dpr=window.devicePixelRatio||1;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,r.width,r.height);const b=temp||box;if(!b)return;const sx=r.width/video.videoWidth,sy=r.height/video.videoHeight;c.strokeStyle='#ffb23f';c.lineWidth=3;c.setLineDash([8,5]);c.strokeRect(b.x*sx,b.y*sy,b.w*sx,b.h*sy);c.setLineDash([]);c.fillStyle='#ffb23f';c.beginPath();c.arc((b.x+b.w/2)*sx,(b.y+b.h/2)*sy,5,0,Math.PI*2);c.fill()}
+file.addEventListener('change',async()=>{const f=file.files[0];if(!f)return;$('upload-error').classList.add('hidden');$('file-meta').textContent='Subiendo…';const fd=new FormData();fd.append('video',f);try{const res=await fetch('/upload',{method:'POST',body:fd}),data=await parseApiResponse(res);if(!res.ok)throw new Error(data.error||'No se pudo abrir el video');job=data.id;duration=data.duration;start=0;end=duration;box=null;window.setTimelineSourceFps?.(data.fps);window.resetTimeline?.(duration);$('editor').classList.remove('hidden');$('filename').textContent=data.name;video.src=data.url;video.load();video.onloadedmetadata=()=>{fitCanvas();drawTimeline()};$('file-meta').textContent='Video listo';drawTimeline();$('editor').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){$('upload-error').textContent=e.message;$('upload-error').classList.remove('hidden');$('file-meta').textContent='No se pudo cargar'}});
+$('play').onclick=()=>{if(video.paused){if(video.currentTime<start||video.currentTime>=end)setPlayhead(start);video.play()}else video.pause()};video.onplay=()=>{$('play').textContent='Ⅱ Pausar'};video.onpause=()=>{$('play').textContent='▶ Reproducir'};video.ontimeupdate=()=>{if(video.currentTime>=end&& !video.paused){video.pause();setPlayhead(start)}drawTimeline()};$('back').onclick=()=>setPlayhead(video.currentTime-1);$('forward').onclick=()=>setPlayhead(video.currentTime+1);video.onseeked=drawTimeline;
+$('mark-start').onclick=()=>{start=Math.min(video.currentTime,end-0.15);drawTimeline()};$('mark-end').onclick=()=>{end=Math.max(video.currentTime,start+0.15);drawTimeline()};
+function timeFromPointer(e){const r=timeline.getBoundingClientRect();return Math.max(0,Math.min(duration,(e.clientX-r.left)/r.width*duration))}
+for(const [id,which] of [['start-thumb','start'],['end-thumb','end']]){$(id).addEventListener('pointerdown',e=>{drag=which;e.preventDefault();e.stopPropagation();$(id).setPointerCapture(e.pointerId)});$(id).addEventListener('pointermove',e=>{if(drag!==which)return;let t=timeFromPointer(e);if(which==='start')start=Math.min(t,end-.15);else end=Math.max(t,start+.15);drawTimeline()});$(id).addEventListener('pointerup',()=>drag=null)}
+timeline.addEventListener('pointerdown',e=>{if(e.target.classList.contains('thumb'))return;setPlayhead(timeFromPointer(e))});window.addEventListener('resize',fitCanvas);
+$('draw').onclick=()=>{drawing=!drawing;$('draw').classList.toggle('active',drawing);$('draw').textContent=drawing?'Dibuja el recuadro sobre la persona…':'Dibujar recuadro sobre la persona';overlay.style.pointerEvents=drawing?'auto':'none';overlay.style.cursor=drawing?'crosshair':'default';if(drawing){video.pause();$('draw-note').textContent='Arrastra sobre la imagen para encerrar a la persona. Al soltar, verás el recuadro naranja.'}else $('draw-note').textContent='Consejo: usa reproducir/pausa para encontrar un fotograma claro. El recuadro se dibuja encima de la imagen; incluye a una sola persona.'};
+overlay.addEventListener('pointerdown',e=>{if(!drawing)return;const r=video.getBoundingClientRect(),sx=video.videoWidth/r.width,sy=video.videoHeight/r.height;down={x:(e.clientX-r.left)*sx,y:(e.clientY-r.top)*sy};overlay.setPointerCapture(e.pointerId)});overlay.addEventListener('pointermove',e=>{if(!drawing||!down)return;const r=video.getBoundingClientRect(),sx=video.videoWidth/r.width,sy=video.videoHeight/r.height,p={x:(e.clientX-r.left)*sx,y:(e.clientY-r.top)*sy};paintBox({x:Math.min(down.x,p.x),y:Math.min(down.y,p.y),w:Math.abs(p.x-down.x),h:Math.abs(p.y-down.y)})});overlay.addEventListener('pointerup',e=>{if(!drawing||!down)return;const r=video.getBoundingClientRect(),sx=video.videoWidth/r.width,sy=video.videoHeight/r.height,p={x:(e.clientX-r.left)*sx,y:(e.clientY-r.top)*sy};box={x:Math.min(down.x,p.x),y:Math.min(down.y,p.y),w:Math.abs(p.x-down.x),h:Math.abs(p.y-down.y)};down=null;drawing=false;$('draw').classList.remove('active');$('draw').textContent='Dibujar recuadro sobre la persona';overlay.style.pointerEvents='none';overlay.style.cursor='default';paintBox();$('box-status').textContent='Persona marcada';$('box-status').classList.add('good');$('clear-box').classList.remove('hidden');$('draw-note').textContent='Recuadro listo. Para corregirlo, pulsa «Borrar recuadro» y dibújalo otra vez.'});$('clear-box').onclick=()=>{box=null;paintBox();$('box-status').textContent='Aún no has marcado a la persona';$('box-status').classList.remove('good');$('clear-box').classList.add('hidden')};
+$('process').onclick=async()=>{if(!job)return;if(!box){$('process-error').textContent='Primero dibuja el recuadro sobre la persona en el video.';$('process-error').classList.remove('hidden');return}if(end<=start){$('process-error').textContent='Elige un tramo válido en la línea de tiempo.';$('process-error').classList.remove('hidden');return}video.pause();$('process-error').classList.add('hidden');$('result').classList.add('hidden');$('process').disabled=true;$('process').textContent='Procesando…';$('process-status').textContent='Analizando y recortando solo el tramo elegido; puede tardar unos minutos.';const fd=new FormData();fd.set('start',start);fd.set('end',end);fd.set('duration',duration);fd.set('x',box.x+box.w/2);fd.set('y',box.y+box.h/2);fd.set('fill',$('fill').value);fd.set('sigma',$('sigma').value);fd.set('out_h',$('out-h').value);try{const res=await fetch(`/process/${job}`,{method:'POST',body:fd}),data=await parseApiResponse(res);if(!res.ok)throw new Error(data.error||'Falló el procesamiento');$('result').innerHTML=`<h2>Tu recorte está listo</h2><video controls playsinline src="${data.url}"></video><a class="download" href="${data.url}">Descargar video vertical ↓</a>`;$('result').classList.remove('hidden');$('result').scrollIntoView({behavior:'smooth',block:'start'});$('process-status').textContent='Listo.'}catch(e){$('process-error').textContent=e.message;$('process-error').classList.remove('hidden');$('process-status').textContent=''}finally{$('process').disabled=false;$('process').textContent='Procesar tramo seleccionado'}};
+</script>
+<script>
+// Override the basic result handler with an inline, synchronized before/after review.
+$('process').onclick=async()=>{
+  if(!job)return;
+  if(!box){$('process-error').textContent='Primero dibuja el recuadro sobre la persona en el video.';$('process-error').classList.remove('hidden');return}
+  if(end<=start){$('process-error').textContent='Elige un tramo válido en la línea de tiempo.';$('process-error').classList.remove('hidden');return}
+  video.pause();$('process-error').classList.add('hidden');$('result').classList.add('hidden');$('process').disabled=true;$('process').textContent='En cola…';$('process-status').textContent='Preparando el trabajo…';$('process-progress').value=0;$('process-progress').classList.remove('hidden');
+  const fd=new FormData();fd.set('start',start);fd.set('end',end);fd.set('duration',duration);fd.set('x',box.x+box.w/2);fd.set('y',box.y+box.h/2);fd.set('fill',$('fill').value);fd.set('sigma',$('sigma').value);fd.set('out_h',$('out-h').value);
+  try{
+    const queuedRes=await fetch(`/process/${job}`,{method:'POST',body:fd});const queued=await parseApiResponse(queuedRes);if(!queuedRes.ok)throw new Error(queued.error||'No se pudo iniciar el procesamiento');
+    $('process').textContent='Procesando…';let data;
+    while(true){
+      await new Promise(resolve=>setTimeout(resolve,2000));
+      const statusRes=await fetch(`/process/${queued.task_id}/status`,{cache:'no-store'});const state=await parseApiResponse(statusRes);if(!statusRes.ok)throw new Error(state.error||'No se pudo consultar el trabajo');
+      $('process-progress').value=state.progress||0;$('process-status').textContent=`${state.message||'Procesando…'}${state.progress?` · aprox. ${state.progress}%`:''}`;
+      if(state.state==='error')throw new Error(state.error||'Falló el procesamiento');
+      if(state.state==='done'){data=state;break}
+    }
+    $('result').innerHTML=`<h2>Revisa el resultado</h2><p class="compare-help">Compara el tramo original con el recorte vertical. El control de reproducción y la barra inferior mueven ambos videos a la vez.</p><div class="comparison"><div class="compare-card"><h3>Original · tramo seleccionado</h3><video id="cmp-original" playsinline preload="metadata" muted></video></div><div class="compare-card"><h3>Resultado · vertical 9:16</h3><video id="cmp-result" playsinline preload="metadata"></video></div></div><div class="compare-controls"><button class="btn primary" id="cmp-play">▶ Reproducir ambos</button><input id="cmp-seek" type="range" min="0" max="${data.duration}" step="0.05" value="0" aria-label="Posición de la comparación"><span class="compare-clock" id="cmp-clock">00:00.0 / ${fmt(data.duration)}</span></div><a class="download" href="${data.download_url}">Descargar resultado vertical ↓</a>`;
+    $('result').classList.remove('hidden');$('result').scrollIntoView({behavior:'smooth',block:'start'});$('process-progress').value=100;$('process-status').textContent='Listo.';
+    const original=$('cmp-original'),processed=$('cmp-result'),seek=$('cmp-seek'),play=$('cmp-play');original.src=video.currentSrc||video.src;processed.src=data.video_url;
+    const syncFromResult=()=>{const target=Math.min(end,start+processed.currentTime);if(Math.abs(original.currentTime-target)>.18)original.currentTime=target;seek.value=processed.currentTime;$('cmp-clock').textContent=`${fmt(processed.currentTime)} / ${fmt(processed.duration||data.duration)}`};
+    processed.addEventListener('loadedmetadata',()=>{seek.max=processed.duration||data.duration;original.currentTime=start;seek.value=0});processed.addEventListener('timeupdate',syncFromResult);processed.addEventListener('ended',()=>{original.pause();play.textContent='▶ Reproducir ambos'});
+    seek.addEventListener('input',()=>{const t=Number(seek.value);processed.currentTime=t;original.currentTime=Math.min(end,start+t);$('cmp-clock').textContent=`${fmt(t)} / ${fmt(processed.duration||data.duration)}`});
+    play.onclick=async()=>{if(processed.paused){if(processed.currentTime>=processed.duration-.05){processed.currentTime=0;original.currentTime=start}original.currentTime=Math.min(end,start+processed.currentTime);try{await Promise.all([processed.play(),original.play()]);play.textContent='Ⅱ Pausar ambos'}catch(e){$('process-status').textContent='Tu navegador no pudo iniciar la reproducción; prueba pulsar otra vez.'}}else{processed.pause();original.pause();play.textContent='▶ Reproducir ambos'}};
+  }catch(e){$('process-error').textContent=e.message;$('process-error').classList.remove('hidden');$('process-status').textContent='';$('process-progress').classList.add('hidden')}
+  finally{$('process').disabled=false;$('process').textContent='Procesar tramo seleccionado'}
+};
+</script>
+</body>
+</html>

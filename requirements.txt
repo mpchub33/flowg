@@ -1,0 +1,9 @@
+Flask>=3.0
+opencv-python-headless>=4.9
+numpy>=1.24
+scipy>=1.10
+ultralytics>=8.2
+lapx>=0.5.5
+imageio-ffmpeg>=0.4
+Pillow>=10
+gunicorn>=22.0
